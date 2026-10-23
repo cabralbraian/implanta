@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Implanta Dental · Centro Odontológico en San Fernando | Implantes y Ortodoncia</title>
+  <meta name="description" content="Centro odontológico en San Fernando. Especialistas en implantes dentales, ortodoncia invisible y estética dental. Cero dolor y facilidades de pago.">
+
+  <!-- Favicon y Fuentes -->
+  <link rel="icon" type="image/jpeg" href="assets/whatsapp_avatar.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#00828A',
+              tealDark: '#075E64',
+              tealDeep: '#053E42',
+              mint: '#10B981',
+              mintLight: '#D1FAE5',
+              aqua: '#14B8A6',
+              bgLight: '#F7FAFA',
+              cardBg: '#FFFFFF',
+              borderLight: '#E2E8F0',
+              textMain: '#0A2528',
+              textMuted: '#476367',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          boxShadow: {
+            'glow-teal': '0 10px 30px -10px rgba(0, 130, 138, 0.55)',
+            'glow-mint': '0 10px 30px -10px rgba(16, 185, 129, 0.55)',
+            'boutique': '0 20px 40px -15px rgba(5, 62, 66, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F7FAFA;
+      color: #0A2528;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      overflow-x: hidden;
+    }
+    ::selection {
+      background: #00828A;
+      color: #FFFFFF;
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* ANIMACIONES DEL SUBRAYADO CURVO */
+    @keyframes drawUnderline {
+      0% { stroke-dashoffset: 320; opacity: 0; }
+      15% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    .animated-underline-wrap {
+      position: relative;
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .animated-underline-wrap:hover {
+      transform: scale(1.02);
+    }
+    .animated-underline-svg {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 18px;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .animated-underline-path {
+      stroke-dasharray: 320;
+      stroke-dashoffset: 320;
+      animation: drawUnderline 1.5s ease-in-out forwards;
+      transition: d 0.8s ease-in-out;
+    }
+
+    /* MINI DOCTOR MASCOTA INTERACTIVO */
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    @keyframes docFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes docWiggle {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.12) rotate(-6deg); }
+      75% { transform: scale(1.12) rotate(6deg); }
+    }
+    .doc-head-idle {
+      animation: docFloat 2s ease-in-out infinite;
+    }
+    .doc-head-excited {
+      animation: docWiggle 0.5s ease-in-out infinite;
+    }
+    .doc-sparkle {
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .doc-excited .doc-sparkle {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .doc-excited .doc-eye {
+      transform: scaleY(0.2);
+    }
+
+    /* ENTRADA DEL HERO SINCRONIZADA */
+    @keyframes heroHeaderLeft {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes heroHeaderRight {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes heroCircleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes heroImageIn {
+      from { opacity: 0; transform: translateY(50px) scale(1.05); }
+      to { opacity: 1; transform: translateY(0) scale(1.05); }
+    }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-header-left {
+      opacity: 0;
+      animation: heroHeaderLeft 0.5s ease-out 1.8s forwards;
+    }
+    .anim-header-right {
+      opacity: 0;
+      animation: heroHeaderRight 0.5s ease-out 1.8s forwards;
+    }
+    .anim-circle-pop {
+      opacity: 0;
+      animation: heroCircleIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) 1.9s forwards;
+    }
+    .anim-doctor-rise {
+      opacity: 0;
+      animation: heroImageIn 1s cubic-bezier(0.22, 1, 0.36, 1) 2.1s forwards;
+    }
+    .anim-text-left {
+      opacity: 0;
+      animation: heroFadeUp 0.6s ease-out 2.5s forwards;
+    }
+    .anim-text-right {
+      opacity: 0;
+      animation: heroFadeUp 0.6s ease-out 2.7s forwards;
+    }
+    .anim-footer-in {
+      opacity: 0;
+      animation: heroFadeUp 0.5s ease-out 2.8s forwards;
+    }
+
+    /* PRELOADER INICIAL IMPLANTA DENTAL */
+    @keyframes preloaderLogoIn {
+      0% { opacity: 0; transform: translateY(12px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes preloaderBar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    @keyframes preloaderCurve {
+      0% { stroke-dashoffset: 240; opacity: 0; }
+      20% { opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+    @keyframes preloaderCurtainUp {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100%); visibility: hidden; }
+    }
+    #implanta-preloader {
+      animation: preloaderCurtainUp 0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.55s forwards;
+    }
+    .preloader-logo-anim {
+      animation: preloaderLogoIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+    }
+    .preloader-curve-anim {
+      stroke-dasharray: 240;
+      stroke-dashoffset: 240;
+      animation: preloaderCurve 1.1s ease-in-out 0.25s forwards;
+    }
+    .preloader-bar-fill {
+      animation: preloaderBar 1.25s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+    }
+
+    /* SCROLL ANIMATIONS (MOVIMIENTO FLUIDO AL SCROLLEAR) */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s cubic-bezier(0.21, 0.47, 0.32, 0.98), transform 0.75s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+      will-change: opacity, transform;
+    }
+    .scroll-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-teal selection:text-white">
+
+  <!-- 1. PRESENTACIÓN INICIAL / PRELOADER MINIMALISTA IMPLANTA DENTAL -->
+  <div id="implanta-preloader" class="fixed inset-0 z-[99999] bg-[#053E42] flex flex-col items-center justify-center select-none pointer-events-none">
+    <div class="preloader-logo-anim opacity-0 flex flex-col items-center">
+      <!-- Logo Oficial Tipográfico con el brote verde menta -->
+      <div class="relative inline-block text-center">
+        <span class="text-4xl sm:text-6xl font-black tracking-tight text-[#F7FAFA]">
+          IMPLANTA<span class="text-[#10B981]">.</span>
+        </span>
+        <div class="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-[#2DD4BF] uppercase mt-1">
+          Centro Odontológico
+        </div>
+        <!-- Curva minimalista de sonrisa dibujándose debajo -->
+        <svg viewBox="0 0 220 20" class="w-full h-4 mt-2 overflow-visible">
+          <path d="M 10,6 Q 110,20 210,6" stroke="#10B981" stroke-width="3.5" stroke-linecap="round" fill="none" class="preloader-curve-anim" />
+        </svg>
+      </div>
+      <!-- Línea de carga en Turquesa/Menta -->
+      <div class="w-40 h-[2.5px] bg-white/15 rounded-full overflow-hidden mt-6">
+        <div class="preloader-bar-fill h-full bg-[#10B981] rounded-full"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. BARRA SUPERIOR NOTIFICACIÓN -->
+  <div class="bg-brand-tealDeep text-white py-1.5 sm:py-2 px-3 text-center text-[11px] sm:text-xs font-medium tracking-wide truncate border-b border-white/10">
+    <span>✨ <strong>Implantes Dentales & Ortodoncia</strong> · Calle Constitución 1651, San Fernando</span>
+  </div>
+
+  <!-- 3. ANIME NAVBAR FLOTANTE CON MINI-DOCTOR MASCOTA IMPLANTA DENTAL -->
+  <div class="fixed top-7 sm:top-8 left-0 right-0 z-[9999] pointer-events-none">
+    <div class="flex justify-center pt-5 sm:pt-5 px-2 sm:px-3">
+      <div id="anime-navbar-container" class="pointer-events-auto flex items-center justify-between sm:justify-start gap-0.5 sm:gap-2 bg-[#053E42]/95 border border-[#10B981]/35 backdrop-blur-xl py-1.5 sm:py-2 px-2 sm:px-3 rounded-full shadow-[0_15px_35px_rgba(5,62,66,0.45)] relative max-w-[96vw]">
+        
+        <!-- Logo Compacto Navbar -->
+        <a href="#" class="pl-3 pr-2 text-base sm:text-lg font-black tracking-tight text-white hidden sm:flex items-center select-none">
+          IMPLANTA<span class="text-brand-mint">.</span>
+        </a>
+
+        <!-- Píldora activa deslizable -->
+        <div id="anime-active-pill" class="absolute top-1.5 bottom-1.5 sm:top-2 sm:bottom-2 rounded-full bg-brand-teal shadow-[0_0_20px_rgba(0,130,138,0.7)] transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] overflow-hidden pointer-events-none" style="left: 8px; width: 44px;">
+          <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0" style="animation: shine 3s ease-in-out infinite;"></div>
+        </div>
+
+        <!-- MINI-DOCTOR CIRUJANO ODONTÓLOGO MASCOTA -->
+        <div id="anime-doctor-mascot" class="absolute -top-10 sm:-top-12 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] z-20" style="left: 30px; transform: translateX(-50%);">
+          <div class="relative w-12 h-13 flex flex-col items-center scale-[0.80] sm:scale-100 origin-bottom">
+            <div id="doc-head" class="doc-head-idle relative w-11 h-11 bg-[#F7FAFA] rounded-full border-2 border-[#053E42] shadow-md flex items-center justify-center">
+              <!-- Gorro Quirúrgico Turquesa -->
+              <div class="absolute -top-2.5 inset-x-0 h-4 bg-[#00828A] rounded-t-full border-b-2 border-[#10B981] flex items-center justify-center">
+                <span class="text-[9px] font-black text-white leading-none">+</span>
+              </div>
+              <!-- Espejo Frontal -->
+              <div class="absolute -top-1.5 right-0.5 w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-slate-200 to-white border-2 border-[#053E42] shadow-sm flex items-center justify-center">
+                <div class="w-1.5 h-1.5 rounded-full bg-teal-300 animate-pulse"></div>
+              </div>
+              <!-- Ojos Clínicos -->
+              <div class="flex items-center gap-0.5 mt-1 z-10">
+                <div class="w-3.5 h-3 rounded-full border-[1.5px] border-[#053E42] bg-teal-50 flex items-center justify-center">
+                  <div class="doc-eye w-1.5 h-1.5 bg-[#053E42] rounded-full transition-transform duration-150"></div>
+                </div>
+                <div class="w-1 h-[1.5px] bg-[#053E42]"></div>
+                <div class="w-3.5 h-3 rounded-full border-[1.5px] border-[#053E42] bg-teal-50 flex items-center justify-center">
+                  <div class="doc-eye w-1.5 h-1.5 bg-[#053E42] rounded-full transition-transform duration-150"></div>
+                </div>
+              </div>
+              <!-- Barbijo Clínico Menta -->
+              <div class="absolute bottom-1 w-5 h-2.5 bg-[#D1FAE5] border border-[#053E42] rounded-md flex items-center justify-center">
+                <div class="w-2.5 h-1 border-b-[1.5px] border-[#053E42] rounded-full"></div>
+              </div>
+              <!-- Destellos al hover -->
+              <div class="doc-sparkle absolute -top-2 -right-3 text-xs">✨</div>
+              <div class="doc-sparkle absolute -top-3 -left-3 text-xs" style="transition-delay: 75ms;">🦷</div>
+            </div>
+            <!-- Cuello Ambo -->
+            <div class="w-3 h-3 bg-white border-r-2 border-b-2 border-[#053E42] rotate-45 -mt-1.5 shadow-sm"></div>
+          </div>
+        </div>
+
+        <!-- Botones de Navegación Táctiles -->
+        <a href="#" data-nav="Inicio" class="anime-nav-link relative z-10 cursor-pointer text-[11px] sm:text-sm font-bold px-3 sm:px-5 py-2 rounded-full transition-colors duration-200 text-white flex items-center gap-1">
+          <i data-lucide="home" class="w-3.5 h-3.5 md:hidden"></i>
+          <span>Inicio</span>
+        </a>
+        <a href="#proceso" data-nav="El Método" class="anime-nav-link relative z-10 cursor-pointer text-[11px] sm:text-sm font-bold px-2.5 sm:px-5 py-2 rounded-full transition-colors duration-200 text-white/80 hover:text-white flex items-center gap-1">
+          <i data-lucide="scan" class="w-3.5 h-3.5 md:hidden"></i>
+          <span class="hidden md:inline">El Método</span>
+          <span class="md:hidden">Método</span>
+        </a>
+        <a href="#casos" data-nav="Antes y Después" class="anime-nav-link relative z-10 cursor-pointer text-[11px] sm:text-sm font-bold px-2.5 sm:px-5 py-2 rounded-full transition-colors duration-200 text-white/80 hover:text-white flex items-center gap-1">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 md:hidden"></i>
+          <span class="hidden md:inline">Antes y Después</span>
+          <span class="md:hidden">Casos</span>
+        </a>
+        <a href="#equipo" data-nav="Nuestro Equipo" class="anime-nav-link relative z-10 cursor-pointer text-[11px] sm:text-sm font-bold px-2.5 sm:px-5 py-2 rounded-full transition-colors duration-200 text-white/80 hover:text-white flex items-center gap-1">
+          <i data-lucide="users" class="w-3.5 h-3.5 md:hidden"></i>
+          <span class="hidden md:inline">Nuestro Equipo</span>
+          <span class="md:hidden">Equipo</span>
+        </a>
+        <a href="#sede" data-nav="Sede" class="anime-nav-link relative z-10 cursor-pointer text-[11px] sm:text-sm font-bold px-2.5 sm:px-5 py-2 rounded-full transition-colors duration-200 text-white/80 hover:text-white flex items-center gap-1">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 md:hidden"></i>
+          <span>Sede</span>
+        </a>
+        <a href="#evaluacion" data-nav="Test 30s" class="anime-nav-link relative z-10 cursor-pointer text-[11px] sm:text-sm font-bold px-2.5 sm:px-5 py-2 rounded-full transition-colors duration-200 text-white/80 hover:text-white hidden sm:flex items-center gap-1">
+          <span>Evaluación 30s</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Espaciador para el navbar flotante -->
+  <div class="h-16 sm:h-14"></div>
+
+  <!-- 4. HERO PRINCIPAL: MINIMALIST HERO CON DR. PABLO GONZÁLEZ (100% PNG TRANSPARENTE) -->
+  <section class="relative flex min-h-[calc(100svh-80px)] w-full flex-col items-center justify-between overflow-hidden bg-brand-bgLight px-4 py-5 sm:px-8 sm:py-8 md:px-12 md:py-10 max-w-7xl mx-auto">
+    
+    <!-- Barra Editorial Superior -->
+    <div class="z-30 flex w-full items-center justify-between border-b border-brand-borderLight pb-3.5 sm:pb-4">
+      <div class="anim-header-left text-xl sm:text-2xl font-black tracking-tight text-brand-tealDeep">
+        IMPLANTA<span class="text-brand-mint">.</span>
+      </div>
+      <div class="anim-header-right inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-tealDeep text-[11px] sm:text-xs font-bold">
+        <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+        <span>San Fernando · Constitución 1651</span>
+      </div>
+    </div>
+
+    <!-- Área Central de 3 Columnas (En celular: 1° Doctor PNG, 2° Título Impactante, 3° CTAs de Conversión) -->
+    <div class="relative grid w-full flex-grow grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-3 my-auto py-4 sm:py-8">
+      
+      <!-- Columna 1 (Izquierda en Desktop / 3° en Celular): Propuesta Clínica y CTAs -->
+      <div class="anim-text-left z-20 order-3 md:order-1 text-center md:text-left space-y-4 sm:space-y-5">
+        <span class="hidden md:inline-block text-xs font-extrabold uppercase tracking-widest text-brand-teal">
+          Implantes & Ortodoncia Avanzada
+        </span>
+        <p class="mx-auto max-w-sm text-sm sm:text-base leading-relaxed text-brand-textMuted md:mx-0">
+          Recuperá la seguridad al masticar y sonreír. <strong>Diagnóstico digital sin moldes molestos</strong>, técnicas de anestesia sin dolor y facilidades de pago en San Fernando.
+        </p>
+
+        <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-stretch sm:items-center md:items-start gap-2.5 sm:gap-3 pt-1">
+          <a href="#evaluacion" class="w-full sm:w-auto px-6 py-4 sm:py-3.5 rounded-2xl bg-brand-teal hover:bg-brand-tealDark active:scale-[0.98] text-white font-extrabold text-sm uppercase tracking-wider shadow-glow-teal transition-all flex items-center justify-center gap-2">
+            <span>Evaluar mi Caso en 30s</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta%20Dental!%20Quiero%20agendar%20mi%20evaluaci%C3%B3n%20en%20San%20Fernando" target="_blank" class="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white hover:bg-brand-bgLight active:scale-[0.98] text-brand-tealDeep border border-brand-borderLight font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-sm">
+            <i data-lucide="message-circle" class="w-4 h-4 text-[#25D366]"></i>
+            <span>Agendar por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2 (Centro / 1° en Celular): Gran Círculo Turquesa + Retrato Dr. Pablo González PNG Transparente -->
+      <div class="relative order-1 md:order-2 flex justify-center items-center h-[310px] sm:h-[380px] md:h-[510px]">
+        <!-- Gran Círculo Turquesa Implanta -->
+        <div class="anim-circle-pop absolute z-0 h-[240px] w-[240px] sm:h-[300px] sm:w-[300px] rounded-full bg-gradient-to-tr from-brand-teal to-brand-aqua shadow-[0_0_65px_rgba(0,130,138,0.55)] md:h-[380px] md:w-[380px] lg:h-[440px] lg:w-[440px]"></div>
+        
+        <!-- Dr. Pablo González en PNG 100% Transparente emergiendo del círculo -->
+        <div class="anim-doctor-rise relative z-10 flex flex-col items-center">
+          <img
+            src="assets/dr_pablo_transparent.png"
+            alt="Dr. Pablo González · Director Clínico Implanta Dental"
+            class="h-[300px] sm:h-[370px] md:h-[480px] lg:h-[510px] w-auto object-contain drop-shadow-[0_20px_28px_rgba(5,62,66,0.35)] transition-transform duration-500 hover:scale-[1.03] select-none"
+          />
+          <!-- Badge Flotante Primera Cita -->
+          <div class="-mt-8 sm:-mt-10 z-20 px-4 py-2 rounded-2xl bg-white/95 backdrop-blur-md border border-brand-borderLight shadow-xl flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-mint shrink-0 animate-ping"></span>
+            <span class="text-[11px] sm:text-xs font-bold text-brand-tealDeep whitespace-nowrap">Dr. Pablo González · Cirugía & Implantes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 3 (Derecha en Desktop / 2° en Celular): Gran Tipografía Editorial -->
+      <div class="anim-text-right z-20 order-2 md:order-3 flex flex-col items-center justify-center text-center md:items-start md:text-left">
+        <span class="md:hidden inline-block text-[11px] font-extrabold uppercase tracking-widest text-brand-teal mb-1">
+          Implantes & Ortodoncia
+        </span>
+        <h1 class="text-[2.75rem] sm:text-6xl lg:text-8xl font-black text-brand-tealDeep tracking-tighter leading-[0.95]">
+          tu nueva,
+          <br />
+          <span class="animated-underline-wrap text-brand-teal pb-1 sm:pb-2">
+            sonrisa.
+            <svg viewBox="0 0 300 20" preserveAspectRatio="none" class="animated-underline-svg text-brand-mint">
+              <path d="M 0,10 Q 75,0 150,10 Q 225,20 300,10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none" class="animated-underline-path" style="animation-delay: 2.9s;" />
+            </svg>
+          </span>
+        </h1>
+        <p class="mt-4 sm:mt-6 text-[11px] sm:text-xs font-bold uppercase tracking-widest text-brand-tealDeep/70">
+          Sin dolor · Sin esperas · Financiación en Cuotas
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Pie del Minimalist Hero -->
+    <div class="anim-footer-in z-30 flex flex-col sm:flex-row w-full items-center justify-between gap-2.5 sm:gap-0 border-t border-brand-borderLight pt-4 sm:pt-5 text-center sm:text-left">
+      <div class="flex items-center justify-center space-x-5">
+        <a href="https://www.instagram.com/implanta.dental/" target="_blank" class="text-brand-tealDeep/80 hover:text-brand-teal transition-colors flex items-center gap-1.5 text-xs font-bold">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          <span>@implanta.dental</span>
+        </a>
+        <a href="https://wa.me/message/G7VJEZJJYPJSC1" target="_blank" class="text-brand-tealDeep/80 hover:text-brand-teal transition-colors flex items-center gap-1.5 text-xs font-bold">
+          <i data-lucide="message-circle" class="w-4 h-4 text-brand-mint"></i>
+          <span>11-4050-4920</span>
+        </a>
+      </div>
+      <div class="text-[11px] sm:text-sm font-bold text-brand-tealDeep/80">
+        Calle Constitución 1651, San Fernando (Zona Norte)
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 3 PILARES CLÍNICOS -->
+  <section class="py-10 sm:py-16 bg-white border-y border-brand-borderLight">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
+        
+        <div class="scroll-reveal flex gap-3.5 sm:gap-4 bg-brand-bgLight/80 sm:bg-transparent p-4 sm:p-0 rounded-2xl border border-brand-borderLight sm:border-0" style="transition-delay: 50ms;">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-brand-tealDeep text-brand-mint flex items-center justify-center font-mono font-black text-base sm:text-lg shrink-0">01</div>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-brand-tealDeep mb-1">Diagnóstico Digital sin Dolor</h3>
+            <p class="text-xs sm:text-sm text-brand-textMuted leading-relaxed">Olvidate de las pastas molestas. Evaluamos tu boca con precisión milimétrica y planificación 3D.</p>
+          </div>
+        </div>
+
+        <div class="scroll-reveal flex gap-3.5 sm:gap-4 bg-brand-bgLight/80 sm:bg-transparent p-4 sm:p-0 rounded-2xl border border-brand-borderLight sm:border-0" style="transition-delay: 150ms;">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-brand-tealDeep text-brand-mint flex items-center justify-center font-mono font-black text-base sm:text-lg shrink-0">02</div>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-brand-tealDeep mb-1">Titanio y Zirconio Certificados</h3>
+            <p class="text-xs sm:text-sm text-brand-textMuted leading-relaxed">Materiales biocompatibles de máxima durabilidad que se integran como si fueran tus dientes originales.</p>
+          </div>
+        </div>
+
+        <div class="scroll-reveal flex gap-3.5 sm:gap-4 bg-brand-bgLight/80 sm:bg-transparent p-4 sm:p-0 rounded-2xl border border-brand-borderLight sm:border-0" style="transition-delay: 250ms;">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-brand-tealDeep text-brand-mint flex items-center justify-center font-mono font-black text-base sm:text-lg shrink-0">03</div>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-brand-tealDeep mb-1">Financiación y Cuotas</h3>
+            <p class="text-xs sm:text-sm text-brand-textMuted leading-relaxed">Facilidades de pago bancarias y cuotas sin interés pensadas para que no postergues tu salud.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECCIÓN CINTA CILÍNDRICA 3D (TILTED GRID HERO) -->
+  <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <div class="relative rounded-3xl overflow-hidden border border-brand-borderLight bg-gradient-to-b from-brand-bgLight to-white shadow-boutique">
+      <div id="tilted-grid-hero-root" class="h-[470px] sm:h-[580px] w-full relative overflow-hidden" style="container-type: size;">
+        
+        <div class="relative z-10 flex h-full flex-col items-center justify-between py-7 sm:py-12 px-4 sm:px-6 text-center pointer-events-none">
+          <div class="space-y-2 sm:space-y-3 pointer-events-auto">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-brand-borderLight text-brand-tealDeep text-[11px] sm:text-xs font-bold uppercase tracking-wider shadow-sm">
+              ✨ Tecnología y Casos Reales en 3D
+            </div>
+            <h2 class="text-2xl sm:text-5xl font-black text-brand-tealDeep tracking-tight max-w-2xl mx-auto drop-shadow-sm leading-tight">
+              La tecnología digital que transforma
+              <span class="animated-underline-wrap text-brand-teal pb-1">
+                cada sonrisa
+                <svg viewBox="0 0 300 20" preserveAspectRatio="none" class="animated-underline-svg text-brand-mint">
+                  <path d="M 0,10 Q 75,0 150,10 Q 225,20 300,10" stroke="currentColor" stroke-width="4" stroke-linecap="round" fill="none" class="animated-underline-path" />
+                </svg>
+              </span>.
+            </h2>
+          </div>
+
+          <div class="space-y-3 sm:space-y-4 w-full max-w-xl mx-auto pointer-events-auto">
+            <p class="text-xs sm:text-base text-brand-tealDeep font-medium bg-white/95 backdrop-blur-md px-4 py-2 sm:px-6 sm:py-2.5 rounded-2xl border border-white/60 shadow-sm">
+              Más de <strong>3.500 pacientes reales</strong> atendidos en nuestra sede de San Fernando.
+            </p>
+            <div>
+              <a href="#evaluacion" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-brand-teal hover:bg-brand-tealDark text-white font-extrabold text-xs sm:text-sm shadow-glow-teal transition-all active:scale-95">
+                <span>Ver si mi caso tiene solución en 30 segundos</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- 7. CONOCÉ TU TRATAMIENTO EN IMPLANTA (SCROLL TIMELINE INTERACTIVO CON LÍNEA DINÁMICA) -->
+  <section id="proceso" class="py-16 sm:py-24 bg-white border-y border-brand-borderLight overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado Boutique con Bordes Arquitectónicos -->
+      <div class="scroll-reveal text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
+        <div class="inline-flex items-center gap-2 rounded-full bg-brand-teal/10 border border-brand-teal/30 px-3.5 py-1 text-xs font-bold text-brand-teal uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+          <span>Protocolo Clínico 100% Digital</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-brand-tealDeep">
+          Cómo es tu tratamiento <span class="text-brand-teal font-serif italic">en Implanta</span>
+        </h2>
+        <p class="text-xs sm:text-base text-brand-textMuted leading-relaxed">
+          A medida que bajás, conocé cada etapa de tu nueva sonrisa: sin dolor, sin moldes que causan arcadas y con la máxima precisión quirúrgica en San Fernando.
+        </p>
+      </div>
+
+      <!-- Contenedor del Timeline con la Línea de Scroll que Conecta los Pasos -->
+      <div id="timeline-container" class="relative max-w-4xl mx-auto py-4">
+        
+        <!-- Línea Vertical de Guía (Fondo Gris Pálido) -->
+        <div class="absolute left-[18px] sm:left-[27px] md:left-[35px] top-6 bottom-8 w-1 sm:w-1.5 bg-slate-200 rounded-full z-0"></div>
+        
+        <!-- Línea Dinámica de Progreso (Se expande y baja mientras hacés Scroll) -->
+        <div id="timeline-progress-fill" class="absolute left-[18px] sm:left-[27px] md:left-[35px] top-6 w-1 sm:w-1.5 bg-gradient-to-b from-brand-teal via-brand-aqua to-brand-mint rounded-full z-10 shadow-[0_0_14px_rgba(0,168,150,0.8)] transition-all duration-100 ease-out" style="height: 0%;"></div>
+
+        <!-- LISTA DE LOS 4 PASOS DEL TRATAMIENTO -->
+        <div class="space-y-10 sm:space-y-16 relative z-20">
+
+          <!-- PASO 01 -->
+          <div class="timeline-step-row flex items-start group" data-step="1">
+            <!-- Nodo Circular en la Línea -->
+            <div class="timeline-step-node shrink-0 w-9 h-9 sm:w-14 sm:h-14 rounded-full border-2 border-slate-300 bg-white flex items-center justify-center font-mono font-black text-xs sm:text-base text-brand-tealDeep shadow-md transition-all duration-500 group-hover:scale-110">
+              <span class="node-number">01</span>
+            </div>
+            
+            <!-- Tarjeta de Contenido del Paso -->
+            <div class="timeline-step-card flex-1 ml-4 sm:ml-8 p-5 sm:p-8 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-boutique transition-all duration-500 hover:shadow-xl hover:border-brand-teal/40">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal font-mono font-bold text-[11px] sm:text-xs uppercase tracking-wider">
+                  PASO 01 · CITA INICIAL
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-brand-textMuted bg-white px-2.5 py-1 rounded-full border border-brand-borderLight">
+                  <i data-lucide="clock" class="w-3.5 h-3.5 text-brand-teal"></i>
+                  <span>30 Minutos · Sin Esperas</span>
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-tealDeep tracking-tight mb-2">
+                Evaluación Clínica & Escaneo 3D Sin Arcadas
+              </h3>
+              <p class="text-xs sm:text-sm md:text-base text-brand-textMuted leading-relaxed mb-5">
+                Olvidate de las pastas frías y moldes incómodos. El <strong>Dr. Pablo González</strong> realiza un registro óptico tridimensional de tu boca en minutos en San Fernando, analizando el soporte óseo y encías con total precisión.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center pt-2">
+                <div class="md:col-span-7 space-y-2.5 text-xs sm:text-sm text-brand-tealDeep font-medium">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Diagnóstico digital en pantalla para que entiendas tu caso</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Sin dolor, sin molestias y con trato humano cercano</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Presupuesto claro y facilidades de pago bancarias</span>
+                  </div>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="relative aspect-[16/10] rounded-2xl overflow-hidden border border-brand-borderLight shadow-sm">
+                    <img src="assets/consultorio.jpg" alt="Consultorio Implanta Dental San Fernando" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute bottom-2 left-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold text-brand-tealDeep shadow-sm">
+                      Consultorio San Fernando
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 02 -->
+          <div class="timeline-step-row flex items-start group" data-step="2">
+            <div class="timeline-step-node shrink-0 w-9 h-9 sm:w-14 sm:h-14 rounded-full border-2 border-slate-300 bg-white flex items-center justify-center font-mono font-black text-xs sm:text-base text-brand-tealDeep shadow-md transition-all duration-500 group-hover:scale-110">
+              <span class="node-number">02</span>
+            </div>
+            
+            <div class="timeline-step-card flex-1 ml-4 sm:ml-8 p-5 sm:p-8 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-boutique transition-all duration-500 hover:shadow-xl hover:border-brand-teal/40">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal font-mono font-bold text-[11px] sm:text-xs uppercase tracking-wider">
+                  PASO 02 · PLANIFICACIÓN 3D
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-brand-textMuted bg-white px-2.5 py-1 rounded-full border border-brand-borderLight">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-teal"></i>
+                  <span>Previsibilidad Absoluta</span>
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-tealDeep tracking-tight mb-2">
+                Diseño Quirúrgico Virtual por Computadora
+              </h3>
+              <p class="text-xs sm:text-sm md:text-base text-brand-textMuted leading-relaxed mb-5">
+                Simulamos digitalmente la posición exacta del implante en software de última generación. Conocés el resultado final de tu sonrisa y masticación <strong>antes de iniciar la colocación</strong>.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center pt-2">
+                <div class="md:col-span-7 space-y-2.5 text-xs sm:text-sm text-brand-tealDeep font-medium">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Guía quirúrgica milimétrica personalizada</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Cero margen de error: seguridad anatómica total</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Plan personalizado a tu fisonomía y expectativas</span>
+                  </div>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="relative aspect-[16/10] rounded-2xl overflow-hidden border border-brand-borderLight shadow-sm">
+                    <img src="assets/real_cases/case_7.jpg" alt="Planificación Digital Implante Od. Pablo González" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute bottom-2 left-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold text-brand-tealDeep shadow-sm">
+                      Caso Real Implante Digital
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 03 -->
+          <div class="timeline-step-row flex items-start group" data-step="3">
+            <div class="timeline-step-node shrink-0 w-9 h-9 sm:w-14 sm:h-14 rounded-full border-2 border-slate-300 bg-white flex items-center justify-center font-mono font-black text-xs sm:text-base text-brand-tealDeep shadow-md transition-all duration-500 group-hover:scale-110">
+              <span class="node-number">03</span>
+            </div>
+            
+            <div class="timeline-step-card flex-1 ml-4 sm:ml-8 p-5 sm:p-8 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-boutique transition-all duration-500 hover:shadow-xl hover:border-brand-teal/40">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal font-mono font-bold text-[11px] sm:text-xs uppercase tracking-wider">
+                  PASO 03 · CIRUGÍA GUIADA
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-brand-mint bg-brand-tealDeep px-2.5 py-1 rounded-full">
+                  <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                  <span>Protocolo Cero Dolor</span>
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-tealDeep tracking-tight mb-2">
+                Colocación del Implante de Titanio de Mínima Invasión
+              </h3>
+              <p class="text-xs sm:text-sm md:text-base text-brand-textMuted leading-relaxed mb-5">
+                Bajo anestesia localizada suave, el <strong>Dr. Pablo González</strong> coloca el implante de titanio biocompatible utilizando lupas de magnificación quirúrgica. En la mayoría de los casos el procedimiento toma menos de 45 minutos.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center pt-2">
+                <div class="md:col-span-7 space-y-2.5 text-xs sm:text-sm text-brand-tealDeep font-medium">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Técnica microquirúrgica sin incisiones traumáticas</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Cero dolor durante la intervención y postoperatorio leve</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Diente provisorio estético si tu caso lo requiere</span>
+                  </div>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="relative aspect-[16/10] rounded-2xl overflow-hidden border border-brand-borderLight shadow-sm">
+                    <img src="assets/real_cases/case_9.jpg" alt="Dr. Pablo González en Cirugía Implanta Dental" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute bottom-2 left-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold text-brand-tealDeep shadow-sm">
+                      Dr. Pablo González en Quirófano
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 04 -->
+          <div class="timeline-step-row flex items-start group" data-step="4">
+            <div class="timeline-step-node shrink-0 w-9 h-9 sm:w-14 sm:h-14 rounded-full border-2 border-slate-300 bg-white flex items-center justify-center font-mono font-black text-xs sm:text-base text-brand-tealDeep shadow-md transition-all duration-500 group-hover:scale-110">
+              <span class="node-number">04</span>
+            </div>
+            
+            <div class="timeline-step-card flex-1 ml-4 sm:ml-8 p-5 sm:p-8 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-boutique transition-all duration-500 hover:shadow-xl hover:border-brand-teal/40">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="px-3 py-1 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal font-mono font-bold text-[11px] sm:text-xs uppercase tracking-wider">
+                  PASO 04 · SONRISA DEFINITIVA
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-brand-teal bg-white px-2.5 py-1 rounded-full border border-brand-borderLight">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-mint"></i>
+                  <span>Porcelana Pura / Zirconio</span>
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-brand-tealDeep tracking-tight mb-2">
+                Instalación de la Corona & Sonrisa Restaurada
+              </h3>
+              <p class="text-xs sm:text-sm md:text-base text-brand-textMuted leading-relaxed mb-5">
+                Se coloca la pieza definitiva de porcelana pura o zirconio de laboratorio, mimetizada en translucidez y tonalidad idéntica a tus dientes naturales. <strong>Volvé a comer y sonreír con total libertad y seguridad</strong>.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center pt-2">
+                <div class="md:col-span-7 space-y-2.5 text-xs sm:text-sm text-brand-tealDeep font-medium">
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>100% de fuerza masticatoria recuperada</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Estética natural imperceptible a simple vista</span>
+                  </div>
+                  <div class="flex items-center gap-2.5">
+                    <span class="w-5 h-5 rounded-full bg-brand-mint text-brand-tealDeep flex items-center justify-center font-black text-xs shrink-0">✓</span>
+                    <span>Garantía y seguimiento postoperatorio continuo</span>
+                  </div>
+                  
+                  <div class="pt-4">
+                    <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta%20Dental!%20Quiero%20iniciar%20mi%20tratamiento%20con%20el%20Dr%20Pablo%20en%20San%20Fernando" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-brand-teal hover:bg-brand-tealDark text-white font-extrabold text-xs sm:text-sm shadow-glow-teal transition-all active:scale-95">
+                      <span>Agendar mi turno en San Fernando</span>
+                      <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="md:col-span-5">
+                  <div class="relative aspect-[16/10] rounded-2xl overflow-hidden border border-brand-borderLight shadow-sm">
+                    <img src="assets/real_cases/case_2.jpg" alt="Caso Real Porcelana Pura Od. Pablo González" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div class="absolute bottom-2 left-2 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold text-brand-tealDeep shadow-sm">
+                      Porcelana Pura · Od. Pablo González
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. SLIDER DE ANTES Y DESPUÉS INTERACTIVO (6 CASOS CLÍNICOS REALES) -->
+  <section id="casos" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <div class="scroll-reveal flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-8 gap-4 sm:gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-semibold uppercase tracking-wider mb-3">
+          🦷 Casos Clínicos 100% Reales
+        </div>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-tealDeep tracking-tight">
+          Antes y después de <span class="text-brand-teal">nuestros pacientes</span>
+        </h2>
+      </div>
+      <p class="text-brand-textMuted max-w-md text-sm sm:text-base leading-relaxed">
+        Pacientes reales tratados en nuestro consultorio de San Fernando. Deslizá la barra con el dedo o mouse para comparar el estado inicial y el resultado final.
+      </p>
+    </div>
+
+    <!-- Selector de 6 Casos Clínicos (Swipeable horizontal en celular) -->
+    <div class="scroll-reveal flex overflow-x-auto no-scrollbar sm:flex-wrap gap-2 sm:gap-2.5 pb-2 mb-6 sm:mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x" id="case-selector-tabs">
+      <button onclick="selectClinicalCase(0)" class="case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-brand-teal text-white shadow-md">
+        Caso 01 · Porcelana Pura Fija
+      </button>
+      <button onclick="selectClinicalCase(1)" class="case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-brand-tealDeep border border-brand-borderLight hover:border-brand-teal">
+        Caso 02 · Implante de Titanio
+      </button>
+      <button onclick="selectClinicalCase(2)" class="case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-brand-tealDeep border border-brand-borderLight hover:border-brand-teal">
+        Caso 03 · Rehabilitación Integral
+      </button>
+      <button onclick="selectClinicalCase(3)" class="case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-brand-tealDeep border border-brand-borderLight hover:border-brand-teal">
+        Caso 04 · Nueva Sonrisa Completa
+      </button>
+      <button onclick="selectClinicalCase(4)" class="case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-brand-tealDeep border border-brand-borderLight hover:border-brand-teal">
+        Caso 05 · Ajuste Protésico Precisión
+      </button>
+      <button onclick="selectClinicalCase(5)" class="case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-brand-tealDeep border border-brand-borderLight hover:border-brand-teal">
+        Caso 06 · Implante Unitario
+      </button>
+    </div>
+
+    <!-- Visor con Slider Táctil -->
+    <div class="scroll-reveal grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center bg-white rounded-3xl p-4 sm:p-8 border border-brand-borderLight shadow-boutique">
+      
+      <div class="lg:col-span-7">
+        <div id="slider-container" class="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden select-none cursor-ew-resize border border-brand-borderLight bg-slate-900 touch-none shadow-inner">
+          
+          <!-- Foto DESPUÉS -->
+          <div class="absolute inset-0 overflow-hidden">
+            <img id="case-after-img" src="assets/caso1.jpg" alt="Resultado Final Después Implanta" class="absolute left-0 w-full max-w-none object-cover pointer-events-none transition-opacity duration-300" style="height: 200%; top: -100%; object-position: center top;">
+          </div>
+          <div class="absolute bottom-2.5 right-2.5 sm:bottom-4 sm:right-4 z-10 bg-brand-tealDeep/95 backdrop-blur-sm text-white text-[10px] sm:text-xs font-black px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-lg border border-white/20">
+            ✨ DESPUÉS<span class="hidden sm:inline"> · Resultado Implanta</span>
+          </div>
+
+          <!-- Foto ANTES -->
+          <div id="before-wrapper" class="absolute inset-0 overflow-hidden z-10" style="clip-path: inset(0 50% 0 0);">
+            <img id="case-before-img" src="assets/caso1.jpg" alt="Estado Inicial Antes Implanta" class="absolute left-0 w-full max-w-none object-cover pointer-events-none transition-opacity duration-300" style="height: 200%; top: 0%; object-position: center top;">
+            <div class="absolute bottom-2.5 left-2.5 sm:bottom-4 sm:left-4 bg-gray-900/90 backdrop-blur-sm text-white text-[10px] sm:text-xs font-black px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-lg border border-white/20">
+              ANTES<span class="hidden sm:inline"> · Estado Inicial</span>
+            </div>
+          </div>
+
+          <!-- Manija divisora -->
+          <div id="slider-handle" class="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_15px_rgba(0,0,0,0.5)] pointer-events-none z-20" style="left: 50%;">
+            <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-teal border-2 border-white shadow-xl flex items-center justify-center text-brand-mint text-[11px] sm:text-xs font-bold">
+              ◀ ▶
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] sm:text-xs text-brand-textMuted mt-3 px-1 sm:px-2">
+          <span>↔ Deslizá con el dedo para comparar</span>
+          <span id="slider-pct" class="font-bold text-brand-teal">50% Comparación</span>
+        </div>
+      </div>
+
+      <!-- Ficha de Expediente Médico Dinámica -->
+      <div class="lg:col-span-5 flex flex-col justify-between space-y-5 sm:space-y-6">
+        <div class="space-y-3.5 sm:space-y-4">
+          <div class="flex items-center justify-between">
+            <span id="case-badge" class="inline-block bg-brand-bgLight text-brand-teal border border-brand-teal/20 text-xs font-bold px-3 py-1 rounded-md">
+              Caso Real #01 · Sede San Fernando
+            </span>
+            <span class="text-xs font-bold text-brand-mint">100% Real</span>
+          </div>
+          
+          <h3 id="case-title" class="text-xl sm:text-2xl font-bold text-brand-tealDeep">
+            Implante Dental & Corona de Zirconio
+          </h3>
+
+          <div class="space-y-2.5 sm:space-y-3 pt-1 sm:pt-2">
+            <div class="p-3.5 rounded-xl bg-brand-bgLight border border-brand-borderLight">
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-textMuted block mb-1">Diagnóstico Inicial</span>
+              <p id="case-diag" class="text-sm text-brand-tealDeep">Pérdida traumática de pieza anterior superior con ausencia de soporte y compromiso estético.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-brand-bgLight border border-brand-borderLight">
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-teal block mb-1">Solución Implanta</span>
+              <p id="case-sol" class="text-sm text-brand-tealDeep">Implante de titanio con corona estética de zirconio adaptada al color exacto de los dientes adyacentes. Sin tallar dientes vecinos.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-1 sm:pt-2">
+            <div class="p-3 rounded-xl bg-brand-bgLight text-center border border-brand-borderLight">
+              <span id="case-time" class="block text-xl sm:text-2xl font-black text-brand-tealDeep">3 Meses</span>
+              <span class="text-[11px] font-medium text-brand-textMuted">Tiempo de Tratamiento</span>
+            </div>
+            <div class="p-3 rounded-xl bg-brand-bgLight text-center border border-brand-borderLight">
+              <span id="case-comfort" class="block text-xl sm:text-2xl font-black text-brand-mint">Cero Dolor</span>
+              <span class="text-[11px] font-medium text-brand-textMuted">Protocolo Clínico Confort</span>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta!%20Vi%20los%20casos%20reales%20de%20antes%20y%20despu%C3%A9s%20y%20quiero%20evaluar%20mi%20caso" target="_blank" class="w-full py-4 px-5 rounded-2xl bg-brand-teal hover:bg-brand-tealDark text-white font-bold text-sm sm:text-base text-center transition-all shadow-glow-teal flex items-center justify-center gap-2">
+          <span>Quiero evaluar mi caso en San Fernando</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- 9. NUESTRO EQUIPO CLÍNICO & INSTALACIONES REALES DE IMPLANTA DENTAL -->
+  <section id="equipo" class="py-16 sm:py-24 bg-white border-y border-brand-borderLight">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-16 flex flex-col items-center justify-center gap-8 md:gap-14">
+      
+      <!-- Encabezado con animación -->
+      <div class="scroll-reveal max-w-2xl mx-auto flex flex-col items-center justify-center text-center gap-3 sm:gap-4">
+        <div class="inline-flex items-center rounded-full border border-brand-teal/30 px-3.5 py-1 text-xs font-bold text-brand-teal uppercase tracking-wider bg-brand-teal/5">
+          Nuestro Equipo Quirúrgico
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-brand-tealDeep tracking-tight">
+          Profesionales reales, equipamiento de vanguardia
+        </h2>
+        <p class="text-xs sm:text-base text-brand-textMuted max-w-xl">
+          Atención personalizada en San Fernando a cargo del <strong>Dr. Pablo González</strong>, con tecnología digital de última generación para implantes y estética dental.
+        </p>
+      </div>
+
+      <!-- Grid 2x2 en Celular y 4 en Desktop con Fotografías 100% Auténticas -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full">
+        
+        <!-- Tarjeta 1: Dr. Pablo González (Director Clínico) -->
+        <div class="scroll-reveal group flex flex-col items-center justify-between gap-3 sm:gap-5 p-4 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-sm hover:shadow-md transition-all">
+          <div class="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-gradient-to-b from-brand-teal/15 to-white border border-brand-borderLight flex items-end justify-center pt-4">
+            <img class="w-full h-full object-contain group-hover:scale-105 transition-all duration-300" src="assets/dr_pablo_transparent.png" alt="Dr. Pablo González · Implanta Dental" />
+          </div>
+          <div class="w-full flex flex-col gap-1.5 items-center justify-center text-center">
+            <span class="text-[10px] font-mono font-bold text-brand-teal uppercase tracking-widest bg-white px-2.5 py-0.5 rounded-full border border-brand-borderLight">Director Clínico</span>
+            <h3 class="text-base sm:text-xl font-bold text-brand-tealDeep">Od. Pablo González</h3>
+            <p class="text-xs text-brand-textMuted">Especialista en Implantología & Cirugía Oral Guiada</p>
+            <div class="pt-1 flex gap-2 text-brand-teal">
+              <a href="https://www.instagram.com/implanta.dental/" target="_blank" class="p-1.5 hover:bg-white rounded-full transition-colors flex items-center gap-1 text-[11px] font-bold">
+                <i data-lucide="instagram" class="w-3.5 h-3.5 text-brand-teal"></i>
+                <span>@implanta.dental</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Cirugía Quirúrgica de Precisión (Dr. Pablo González en sillón con lupas) -->
+        <div class="scroll-reveal group flex flex-col items-center justify-between gap-3 sm:gap-5 p-4 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-sm hover:shadow-md transition-all">
+          <div class="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-white border border-brand-borderLight relative">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" src="assets/real_cases/case_9.jpg" alt="Dr. Pablo González en Cirugía con Lupas" />
+            <div class="absolute bottom-2 left-2 bg-brand-tealDeep/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-white text-[10px] font-bold">
+              Lupas Quirúrgicas
+            </div>
+          </div>
+          <div class="w-full flex flex-col gap-1.5 items-center justify-center text-center">
+            <span class="text-[10px] font-mono font-bold text-brand-teal uppercase tracking-widest bg-white px-2.5 py-0.5 rounded-full border border-brand-borderLight">Quirófano & Precisión</span>
+            <h3 class="text-base sm:text-xl font-bold text-brand-tealDeep">Microcirugía & Cero Dolor</h3>
+            <p class="text-xs text-brand-textMuted">Procedimientos mínimamente invasivos con magnificación óptica</p>
+            <div class="pt-1 flex gap-2 text-brand-teal">
+              <span class="text-[11px] font-bold text-brand-mint bg-brand-tealDeep px-2.5 py-0.5 rounded-full">San Fernando</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Laboratorio Digital CAD/CAM & Coronas de Zirconio -->
+        <div class="scroll-reveal group flex flex-col items-center justify-between gap-3 sm:gap-5 p-4 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-sm hover:shadow-md transition-all">
+          <div class="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-white border border-brand-borderLight relative">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" src="assets/real_cases/case_11.jpg" alt="Laboratorio Digital Implantes y Puentes Zirconio" />
+            <div class="absolute bottom-2 left-2 bg-brand-tealDeep/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-white text-[10px] font-bold">
+              Robótica CAD/CAM
+            </div>
+          </div>
+          <div class="w-full flex flex-col gap-1.5 items-center justify-center text-center">
+            <span class="text-[10px] font-mono font-bold text-brand-teal uppercase tracking-widest bg-white px-2.5 py-0.5 rounded-full border border-brand-borderLight">Prótesis & Coronas</span>
+            <h3 class="text-base sm:text-xl font-bold text-brand-tealDeep">Laboratorio Digital 3D</h3>
+            <p class="text-xs text-brand-textMuted">Diseño y fresado de zirconio y porcelana pura biocompatible</p>
+            <div class="pt-1 flex gap-2 text-brand-teal">
+              <span class="text-[11px] font-bold text-brand-teal bg-white px-2.5 py-0.5 rounded-full border border-brand-borderLight">Máxima Durabilidad</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Consultorio Quirúrgico San Fernando -->
+        <div class="scroll-reveal group flex flex-col items-center justify-between gap-3 sm:gap-5 p-4 rounded-3xl bg-brand-bgLight border border-brand-borderLight shadow-sm hover:shadow-md transition-all">
+          <div class="w-full aspect-[4/5] overflow-hidden rounded-2xl bg-white border border-brand-borderLight relative">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-all duration-300" src="assets/consultorio.jpg" alt="Consultorio Dental San Fernando Implanta" />
+            <div class="absolute bottom-2 left-2 bg-brand-tealDeep/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-white text-[10px] font-bold">
+              Constitución 1651
+            </div>
+          </div>
+          <div class="w-full flex flex-col gap-1.5 items-center justify-center text-center">
+            <span class="text-[10px] font-mono font-bold text-brand-teal uppercase tracking-widest bg-white px-2.5 py-0.5 rounded-full border border-brand-borderLight">Instalaciones</span>
+            <h3 class="text-base sm:text-xl font-bold text-brand-tealDeep">Consultorio San Fernando</h3>
+            <p class="text-xs text-brand-textMuted">Ambiente boutique esterilizado con equipamiento integral</p>
+            <div class="pt-1 flex gap-2 text-brand-teal">
+              <a href="https://goo.gl/maps/8mHDX6hkHb3iktqh8" target="_blank" class="p-1.5 hover:bg-white rounded-full transition-colors flex items-center gap-1 text-[11px] font-bold text-brand-teal">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                <span>Ver ubicación en Mapa</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. DIAGNÓSTICO EN 30 SEGUNDOS (SMILEQUIZ) -->
+  <section id="evaluacion" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+    <div class="scroll-reveal bg-white rounded-3xl p-5 sm:p-12 border border-brand-borderLight shadow-boutique relative overflow-hidden">
+      
+      <div id="quiz-screen">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-6 sm:mb-8 pb-4 border-b border-brand-borderLight">
+          <div class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-brand-tealDeep flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-brand-teal shrink-0"></i>
+            <span>Diagnóstico Rápido · 30 Segundos</span>
+          </div>
+          <span id="quiz-step-indicator" class="text-xs font-bold text-brand-teal">Paso 1 de 3</span>
+        </div>
+
+        <h3 id="quiz-title" class="text-xl sm:text-3xl font-extrabold text-brand-tealDeep mb-2">
+          ¿Qué te gustaría corregir en tu sonrisa?
+        </h3>
+        <p id="quiz-desc" class="text-brand-textMuted text-xs sm:text-sm mb-6 sm:mb-8">
+          Seleccioná la opción más cercana a tu caso para recomendarte el plan adecuado.
+        </p>
+
+        <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <!-- Opciones renderizadas con JS -->
+        </div>
+      </div>
+
+      <!-- Pantalla Final Quiz -->
+      <div id="quiz-result" class="hidden text-center py-4 sm:py-6 space-y-5 sm:space-y-6">
+        <div class="w-16 h-16 rounded-full bg-brand-mint/20 border border-brand-mint/50 flex items-center justify-center mx-auto text-brand-teal">
+          <i data-lucide="check-circle-2" class="w-8 h-8 text-brand-mint"></i>
+        </div>
+        <div>
+          <h3 class="text-xl sm:text-3xl font-extrabold text-brand-tealDeep mb-2">
+            ¡Tu caso es 100% tratable en Implanta Dental!
+          </h3>
+          <p class="text-brand-textMuted text-sm sm:text-base max-w-lg mx-auto">
+            El Dr. Pablo González y el equipo en San Fernando pueden brindarte una solución definitiva sin dolor y con facilidades de financiación.
+          </p>
+        </div>
+        <div class="pt-2">
+          <a id="quiz-whatsapp-link" href="#" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all">
+            <i data-lucide="message-circle" class="w-5 h-5 shrink-0"></i>
+            <span>Agendar Evaluación por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 11. SEDE SAN FERNANDO & CONECTIVIDAD -->
+  <section id="sede" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <div class="scroll-reveal text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-semibold uppercase tracking-wider mb-3 sm:mb-4">
+        📍 Ubicación Estratégica
+      </div>
+      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-tealDeep tracking-tight">
+        Nuestra Sede <span class="text-brand-teal">en San Fernando</span>
+      </h2>
+      <p class="mt-3 sm:mt-4 text-brand-textMuted text-sm sm:text-lg">Consultorios modernos diseñados para tu confort en Zona Norte.</p>
+    </div>
+
+    <div class="scroll-reveal grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center bg-white rounded-3xl p-6 sm:p-8 border border-brand-borderLight shadow-boutique">
+      <div class="space-y-5">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xl sm:text-2xl font-bold text-brand-tealDeep">Consultorio San Fernando</h3>
+            <span class="px-3 py-1 rounded-full bg-brand-bgLight text-xs font-bold text-brand-teal">Constitución 1651</span>
+          </div>
+          <p class="text-sm text-brand-textMuted">Sobre Calle Constitución, a pasos del centro comercial de San Fernando. Equipamiento completo y quirófano dental.</p>
+        </div>
+
+        <div class="space-y-2 text-xs text-brand-textMuted pt-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4 text-brand-teal shrink-0"></i>
+            <span><strong>Lunes a Viernes</strong> de 09:00 a 19:30 hs · <strong>Sábados</strong> de 09:00 a 13:00 hs</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="train" class="w-4 h-4 text-brand-teal shrink-0"></i>
+            <span>Tren Mitre (Ramal Tigre - Estación San Fernando)</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="bus" class="w-4 h-4 text-brand-teal shrink-0"></i>
+            <span>Líneas de colectivo: 60, 203, 365, 710</span>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-brand-borderLight flex gap-3">
+          <a href="https://goo.gl/maps/8mHDX6hkHb3iktqh8" target="_blank" class="flex-1 py-3.5 px-4 rounded-xl border border-brand-teal text-brand-teal font-bold text-xs uppercase tracking-wider text-center hover:bg-brand-teal hover:text-white transition-all">Ver en Google Maps</a>
+          <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta!%20Quiero%20turno%20en%20sede%20San%20Fernando" target="_blank" class="flex-1 py-3.5 px-4 rounded-xl bg-brand-teal text-white font-bold text-xs uppercase tracking-wider text-center shadow-glow-teal hover:bg-brand-tealDark transition-all">Pedir Turno</a>
+        </div>
+      </div>
+
+      <div class="aspect-[16/11] rounded-2xl overflow-hidden border border-brand-borderLight shadow-sm">
+        <img src="assets/consultorio.jpg" alt="Consultorio Implanta Dental" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+    <!-- 12. RESEÑAS VERIFICADAS EDITORIALES (PACIENTES REALES CON FOTO DE PERFIL) -->
+  <section id="opiniones" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    
+    <!-- Encabezado Editorial Boutique -->
+    <div class="scroll-reveal flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-14 gap-6">
+      <div class="space-y-3 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="heart" class="w-3.5 h-3.5 text-brand-teal fill-brand-teal/20"></i>
+          <span>Historias Reales en San Fernando</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-brand-tealDeep tracking-tight leading-tight">
+          La tranquilidad de volver a sonreír, <span class="text-brand-teal font-serif italic">contada por ellos</span>
+        </h2>
+        <p class="text-xs sm:text-base text-brand-textMuted leading-relaxed">
+          Experiencias auténticas de personas que recuperaron su masticación y estética dental con el <strong>Dr. Pablo González</strong>.
+        </p>
+      </div>
+
+      <!-- Badge Google Reviews Verificado -->
+      <div class="shrink-0 bg-white p-4 sm:p-5 rounded-2xl border border-brand-borderLight shadow-boutique flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-brand-bgLight flex items-center justify-center p-2 border border-brand-borderLight shrink-0">
+          <svg style="width:28px;height:28px;" viewBox="0 0 24 24">
+            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl font-black text-brand-tealDeep font-mono">4.9</span>
+            <div class="flex text-amber-400 text-sm">★★★★★</div>
+          </div>
+          <p class="text-[11px] font-bold text-brand-textMuted uppercase tracking-wider">Google Reviews · San Fernando</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid Editorial de 4 Reseñas con Foto de Perfil Real -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8">
+      
+      <!-- Reseña 1: Martín Rodríguez -->
+      <div class="scroll-reveal group p-6 sm:p-8 rounded-3xl bg-white border border-brand-borderLight shadow-boutique hover:shadow-xl hover:border-brand-teal/40 transition-all duration-500 flex flex-col justify-between" style="transition-delay: 50ms;">
+        <div class="space-y-4">
+          <!-- Cabecera de la reseña con foto real de perfil -->
+          <div class="flex items-center justify-between border-b border-brand-borderLight pb-4">
+            <div class="flex items-center gap-3.5">
+              <img src="assets/avatars/martin.jpg" alt="Martín Rodríguez · Paciente Implanta Dental" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-brand-teal/30 shadow-sm" />
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-brand-tealDeep leading-tight">Martín Rodríguez</h4>
+                <p class="text-xs text-brand-textMuted">San Fernando · <span class="text-brand-teal font-semibold">2 Implantes Dentales</span></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 bg-brand-bgLight px-2.5 py-1 rounded-full border border-brand-borderLight text-[11px] font-bold text-brand-teal">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-brand-mint"></i>
+              <span class="hidden sm:inline">Verificada</span>
+            </div>
+          </div>
+
+          <!-- Estrellas y Fecha -->
+          <div class="flex items-center gap-2">
+            <div class="flex text-amber-400 text-sm">★★★★★</div>
+            <span class="text-[11px] text-brand-textMuted">Hace 3 semanas</span>
+          </div>
+
+          <!-- Testimonio Editorial -->
+          <p class="text-xs sm:text-sm text-brand-textMain leading-relaxed italic">
+            “Excelente atención del Dr. Pablo González. Tenía mucho miedo por el dolor, pero no sentí absolutamente nada durante la cirugía de los dos implantes. El consultorio en San Fernando es hermoso, moderno y te explican todo en pantalla con escáner 3D. 10 de 10.”
+          </p>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-brand-borderLight flex items-center justify-between text-[11px] font-bold">
+          <span class="text-brand-mint bg-brand-mint/10 px-2.5 py-1 rounded-lg">Cero Dolor</span>
+          <span class="text-brand-textMuted">Atendido por Od. Pablo González</span>
+        </div>
+      </div>
+
+      <!-- Reseña 2: Valeria Giannini -->
+      <div class="scroll-reveal group p-6 sm:p-8 rounded-3xl bg-white border border-brand-borderLight shadow-boutique hover:shadow-xl hover:border-brand-teal/40 transition-all duration-500 flex flex-col justify-between" style="transition-delay: 150ms;">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-brand-borderLight pb-4">
+            <div class="flex items-center gap-3.5">
+              <img src="assets/avatars/valeria.jpg" alt="Valeria Giannini · Paciente Implanta Dental" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-brand-teal/30 shadow-sm" />
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-brand-tealDeep leading-tight">Valeria Giannini</h4>
+                <p class="text-xs text-brand-textMuted">Victoria · <span class="text-brand-teal font-semibold">Porcelana Pura & Estética</span></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 bg-brand-bgLight px-2.5 py-1 rounded-full border border-brand-borderLight text-[11px] font-bold text-brand-teal">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-brand-mint"></i>
+              <span class="hidden sm:inline">Verificada</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="flex text-amber-400 text-sm">★★★★★</div>
+            <span class="text-[11px] text-brand-textMuted">Hace 1 mes</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-brand-textMain leading-relaxed italic">
+            “Hacía años que me tapaba la boca para reír por vergüenza de mis dientes de adelante. El Dr. Pablo me hizo una rehabilitación fija de porcelana pura y el cambio fue de otro planeta. Además las facilidades de pago con tarjeta me permitieron hacerlo realidad sin asfixiarme.”
+          </p>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-brand-borderLight flex items-center justify-between text-[11px] font-bold">
+          <span class="text-brand-teal bg-brand-teal/10 px-2.5 py-1 rounded-lg">Porcelana Fija</span>
+          <span class="text-brand-textMuted">Sede San Fernando</span>
+        </div>
+      </div>
+
+      <!-- Reseña 3: Esteban Morales -->
+      <div class="scroll-reveal group p-6 sm:p-8 rounded-3xl bg-white border border-brand-borderLight shadow-boutique hover:shadow-xl hover:border-brand-teal/40 transition-all duration-500 flex flex-col justify-between" style="transition-delay: 200ms;">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-brand-borderLight pb-4">
+            <div class="flex items-center gap-3.5">
+              <img src="assets/avatars/esteban.jpg" alt="Esteban Morales · Paciente Implanta Dental" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-brand-teal/30 shadow-sm" />
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-brand-tealDeep leading-tight">Esteban Morales</h4>
+                <p class="text-xs text-brand-textMuted">Tigre · <span class="text-brand-teal font-semibold">Implante Unitario Frontal</span></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 bg-brand-bgLight px-2.5 py-1 rounded-full border border-brand-borderLight text-[11px] font-bold text-brand-teal">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-brand-mint"></i>
+              <span class="hidden sm:inline">Verificada</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="flex text-amber-400 text-sm">★★★★★</div>
+            <span class="text-[11px] text-brand-textMuted">Hace 2 meses</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-brand-textMain leading-relaxed italic">
+            “Perdí una pieza dental jugando al fútbol. Fui a varios lugares donde me querían limar los dientes de al lado. Acá en Implanta me colocaron un implante de titanio directo sin tocar ningún otro diente. El color de la corona de zirconio quedó idéntico a mis dientes naturales.”
+          </p>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-brand-borderLight flex items-center justify-between text-[11px] font-bold">
+          <span class="text-brand-mint bg-brand-mint/10 px-2.5 py-1 rounded-lg">Sin Tallar Dientes Vecinos</span>
+          <span class="text-brand-textMuted">Corona Zirconio</span>
+        </div>
+      </div>
+
+      <!-- Reseña 4: Marcela Benítez -->
+      <div class="scroll-reveal group p-6 sm:p-8 rounded-3xl bg-white border border-brand-borderLight shadow-boutique hover:shadow-xl hover:border-brand-teal/40 transition-all duration-500 flex flex-col justify-between" style="transition-delay: 250ms;">
+        <div class="space-y-4">
+          <div class="flex items-center justify-between border-b border-brand-borderLight pb-4">
+            <div class="flex items-center gap-3.5">
+              <img src="assets/avatars/marcela.jpg" alt="Marcela Benítez · Paciente Implanta Dental" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-brand-teal/30 shadow-sm" />
+              <div>
+                <h4 class="text-base sm:text-lg font-bold text-brand-tealDeep leading-tight">Marcela Benítez</h4>
+                <p class="text-xs text-brand-textMuted">San Fernando · <span class="text-brand-teal font-semibold">Ortodoncia & Salud Dental</span></p>
+              </div>
+            </div>
+            <div class="flex items-center gap-1 bg-brand-bgLight px-2.5 py-1 rounded-full border border-brand-borderLight text-[11px] font-bold text-brand-teal">
+              <i data-lucide="check" class="w-3.5 h-3.5 text-brand-mint"></i>
+              <span class="hidden sm:inline">Verificada</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <div class="flex text-amber-400 text-sm">★★★★★</div>
+            <span class="text-[11px] text-brand-textMuted">Hace 3 semanas</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-brand-textMain leading-relaxed italic">
+            “La puntualidad y calidez humana de Implanta Dental son impecables. Nunca te hacen esperar horas en la sala, entrás a horario y te atienden con una dedicación absoluta. Recomiendo a ojos cerrados a cualquier vecino de San Fernando o Zona Norte.”
+          </p>
+        </div>
+
+        <div class="pt-4 mt-4 border-t border-brand-borderLight flex items-center justify-between text-[11px] font-bold">
+          <span class="text-brand-teal bg-brand-teal/10 px-2.5 py-1 rounded-lg">Puntualidad Absoluta</span>
+          <span class="text-brand-textMuted">Atención Cálida</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 13. PREGUNTAS FRECUENTES (FAQ BOUTIQUE EN ACORDEÓN) -->
+  <section id="faq" class="py-16 sm:py-24 bg-brand-bgLight border-y border-brand-borderLight">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="scroll-reveal text-center max-w-2xl mx-auto mb-10 sm:mb-14 space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-teal/10 border border-brand-teal/30 text-brand-teal text-xs font-bold uppercase tracking-wider">
+          <i data-lucide="help-circle" class="w-3.5 h-3.5 text-brand-teal"></i>
+          <span>Despejá tus Dudas</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-brand-tealDeep tracking-tight">
+          Preguntas Frecuentes
+        </h2>
+        <p class="text-xs sm:text-base text-brand-textMuted">
+          Todo lo que necesitás saber antes de tu primera consulta en Implanta Dental San Fernando.
+        </p>
+      </div>
+
+      <!-- Acordeón Interactivo FAQ -->
+      <div class="space-y-3.5 sm:space-y-4">
+        
+        <!-- Pregunta 1 -->
+        <div class="scroll-reveal bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden transition-all duration-200">
+          <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-brand-tealDeep hover:text-brand-teal transition-colors">
+            <span>¿Duele colocarse un implante dental?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-teal shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-brand-textMuted leading-relaxed border-t border-brand-borderLight/60 pt-3">
+            <strong>No, el procedimiento es totalmente indoloro.</strong> En Implanta Dental utilizamos anestesia localizada suave y tecnología de microcirugía guiada. La mayoría de los pacientes refieren que es mucho más rápido y cómodo que una extracción común, y al día siguiente retoman sus actividades habituales.
+          </div>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="scroll-reveal bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden transition-all duration-200">
+          <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-brand-tealDeep hover:text-brand-teal transition-colors">
+            <span>¿Qué medios de pago y facilidades tienen en San Fernando?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-teal shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-brand-textMuted leading-relaxed border-t border-brand-borderLight/60 pt-3">
+            Aceptamos tarjetas de crédito bancarias con <strong>opciones de cuotas</strong> (como Santander y entidades bancarias asociadas), transferencias y efectivo con beneficios especiales. Diseñamos un plan de pago accesible para que puedas realizar tu tratamiento sin demoras.
+          </div>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="scroll-reveal bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden transition-all duration-200">
+          <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-brand-tealDeep hover:text-brand-teal transition-colors">
+            <span>¿Puedo tener un diente fijo en el mismo día? (Carga Inmediata)</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-teal shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-brand-textMuted leading-relaxed border-t border-brand-borderLight/60 pt-3">
+            <strong>Sí.</strong> En los casos clínicos con buen soporte óseo inicial, el <strong>Dr. Pablo González</strong> aplica el protocolo de carga inmediata: se coloca el implante de titanio y una pieza provisoria fija en la misma sesión para que salgas del consultorio sonriendo sin espacios vacíos.
+          </div>
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="scroll-reveal bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden transition-all duration-200">
+          <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-brand-tealDeep hover:text-brand-teal transition-colors">
+            <span>¿Qué ocurre si hace tiempo perdí el diente y tengo poco hueso?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-teal shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-brand-textMuted leading-relaxed border-t border-brand-borderLight/60 pt-3">
+            Hoy en día la falta de hueso ya no es un impedimento. Contamos con técnicas de regeneración ósea guiada y biomateriales de alta biocompatibilidad que permiten recuperar el volumen óseo necesario para colocar el implante de forma 100% segura y duradera.
+          </div>
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="scroll-reveal bg-white rounded-2xl border border-brand-borderLight shadow-sm overflow-hidden transition-all duration-200">
+          <button onclick="toggleFaq(this)" class="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-bold text-sm sm:text-base text-brand-tealDeep hover:text-brand-teal transition-colors">
+            <span>¿Cómo solicito mi primera consulta de evaluación?</span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-brand-teal shrink-0 transition-transform duration-300"></i>
+          </button>
+          <div class="faq-content hidden px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-brand-textMuted leading-relaxed border-t border-brand-borderLight/60 pt-3">
+            Es muy fácil: podés escribirnos por WhatsApp al <strong>+54 9 11 4050-4920</strong> o usar el botón directo de esta web. Nuestro equipo te responderá de inmediato para coordinar el día y horario que mejor se adapte a tu agenda en San Fernando.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 14. GRAN SECCIÓN FINAL BOUTIQUE: LLAMADO A LA ACCIÓN VIP -->
+  <section class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="scroll-reveal relative rounded-3xl overflow-hidden bg-gradient-to-br from-brand-tealDeep via-[#064e54] to-brand-teal p-8 sm:p-14 lg:p-16 text-white shadow-2xl border border-white/10">
+      
+      <!-- Efecto de Luz de Fondo -->
+      <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-brand-mint/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-brand-aqua/20 blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto text-center space-y-6">
+        
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-mint text-xs font-bold uppercase tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+          <span>Consultorio Abierto en San Fernando</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">
+          Recuperá la seguridad de reír y comer con total libertad
+        </h2>
+
+        <p class="text-sm sm:text-lg text-white/85 leading-relaxed max-w-2xl mx-auto">
+          No dejes pasar más tiempo. El <strong>Dr. Pablo González</strong> te espera en Calle Constitución 1651 con tecnología de vanguardia, diagnóstico sin dolor y facilidades de pago a tu medida.
+        </p>
+
+        <!-- Botones de Acción -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-4">
+          <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta%20Dental!%20Quiero%20agendar%20mi%20evaluaci%C3%B3n%20en%20San%20Fernando" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:scale-[0.98] text-white font-black text-sm sm:text-base tracking-wide shadow-2xl transition-all flex items-center justify-center gap-3">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            <span>Agendar mi Turno por WhatsApp</span>
+          </a>
+          
+          <a href="#evaluacion" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/15 hover:bg-white/25 active:scale-[0.98] text-white border border-white/30 font-bold text-sm sm:text-base transition-all flex items-center justify-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-brand-mint"></i>
+            <span>Evaluación en 30 Segundos</span>
+          </a>
+        </div>
+
+        <!-- Fila de Puntos de Confianza -->
+        <div class="pt-8 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-semibold text-white/90">
+          <div class="flex items-center justify-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-brand-mint"></i>
+            <span>Garantía en Implantes</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <i data-lucide="smile" class="w-4 h-4 text-brand-mint"></i>
+            <span>Protocolo Cero Dolor</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <i data-lucide="credit-card" class="w-4 h-4 text-brand-mint"></i>
+            <span>Cuotas con Tarjetas</span>
+          </div>
+          <div class="flex items-center justify-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-brand-mint"></i>
+            <span>San Fernando Centro</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. FOOTER -->
+  <footer class="bg-brand-tealDeep text-white pt-14 pb-28 md:py-16 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
+        <div class="col-span-2 md:col-span-1 space-y-3">
+          <span class="text-3xl font-black text-white">IMPLANTA<span class="text-brand-mint">.</span></span>
+          <p class="text-xs text-white/70">Centro odontológico pensado en vos en San Fernando, Buenos Aires.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-brand-mint mb-3">Tratamientos</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li>Implantes Dentales</li>
+            <li>Ortodoncia & Alineadores</li>
+            <li>Rehabilitación Fija</li>
+            <li>Carillas de Porcelana</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-brand-mint mb-3">Sede San Fernando</h4>
+          <ul class="space-y-2 text-xs text-white/80">
+            <li>Constitución 1651, San Fernando</li>
+            <li>Lun a Vie: 09:00 a 19:30 hs</li>
+            <li>Sábados: 09:00 a 13:00 hs</li>
+          </ul>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <h4 class="font-bold text-sm text-brand-mint mb-3">Contacto Directo</h4>
+          <p class="text-xs text-white/80 mb-2">WhatsApp: +54 9 11 4050-4920</p>
+          <a href="https://www.instagram.com/implanta.dental/" target="_blank" class="text-xs text-brand-mint hover:underline">@implanta.dental en Instagram</a>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 sm:pt-8 text-center text-xs text-white/60">
+        © 2026 Implanta Dental. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- 14. BARRA INFERIOR FIJA PARA CELULARES (THUMB-ZONE 80% TRÁFICO MOBILE) -->
+  <div class="fixed bottom-0 inset-x-0 z-[9990] md:hidden bg-[#053E42]/95 backdrop-blur-xl border-t border-white/15 px-3.5 py-2.5 shadow-[0_-10px_30px_rgba(5,62,66,0.45)]">
+    <div class="flex items-center gap-2.5 max-w-md mx-auto">
+      <a href="#evaluacion" class="flex-1 py-3 px-3 rounded-xl bg-brand-mint text-brand-tealDeep font-black text-xs text-center shadow-sm flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+        <i data-lucide="sparkles" class="w-4 h-4 shrink-0"></i>
+        <span>Evaluación 30s</span>
+      </a>
+      <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta%20Dental!%20Vengo%20de%20la%20web%20y%20quiero%20agendar%20un%20turno%20en%20San%20Fernando" target="_blank" class="flex-[1.35] py-3 px-3.5 rounded-xl bg-[#25D366] text-white font-black text-xs text-center shadow-md flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+        <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
+        <span>Agendar por WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE WHATSAPP (SOLO DESKTOP) -->
+  <a href="https://wa.me/message/G7VJEZJJYPJSC1?text=Hola%20Implanta%20Dental!%20Vengo%20de%20la%20web" target="_blank" class="hidden md:flex fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl hover:scale-110 transition-all items-center justify-center">
+    <i data-lucide="message-circle" class="w-7 h-7"></i>
+  </a>
+
+  <!-- SCRIPTS INTERACTIVOS -->
+  <script>
+    // Inicializar iconos de Lucide
+    lucide.createIcons();
+
+    // 1. SLIDER ANTES Y DESPUÉS INTERACTIVO (6 CASOS CLÍNICOS REALES DE IMPLANTA DENTAL)
+    const container = document.getElementById('slider-container');
+    const beforeWrapper = document.getElementById('before-wrapper');
+    const handle = document.getElementById('slider-handle');
+    const pctLabel = document.getElementById('slider-pct');
+    const caseBeforeImg = document.getElementById('case-before-img');
+    const caseAfterImg = document.getElementById('case-after-img');
+    let isDown = false;
+
+        const CLINICAL_CASES = [
+      {
+        img: "assets/real_cases/case_2.jpg",
+        badge: "Caso Real #01 · Od. Pablo González",
+        title: "Rehabilitación Fija con Porcelana Pura",
+        diag: "Pérdida de soporte dental y piezas anteriores superiores severamente desgastadas.",
+        sol: "Rehabilitación estética fija con porcelana pura de alta resistencia realizada por el Od. Pablo González.",
+        time: "4 Semanas",
+        comfort: "Cero Dolor",
+        cropRatio: 200,
+        topOffset: -100
+      },
+      {
+        img: "assets/real_cases/case_7.jpg",
+        badge: "Caso Real #02 · Od. Pablo González",
+        title: "Implante de Titanio y Rehabilitación Digital",
+        diag: "Ausencia de incisivo central superior con reabsorción ósea visible.",
+        sol: "Implante osteointegrado de titanio con pilar digital y corona cerámica estética perfectamente mimetizada.",
+        time: "3 Meses",
+        comfort: "Microcirugía",
+        cropRatio: 200,
+        topOffset: -100
+      },
+      {
+        img: "assets/real_cases/case_10.jpg",
+        badge: "Caso Real #03 · Od. Pablo González",
+        title: "Rehabilitación Integral & Estética Dental",
+        diag: "Desgaste severo, diastemas frontales y asimetría gingival en arcada superior.",
+        sol: "Diseño digital de sonrisa y colocación de coronas estéticas sobre implantes devolviendo función y belleza.",
+        time: "6 Semanas",
+        comfort: "Cero Molestias",
+        cropRatio: 200,
+        topOffset: -100
+      },
+      {
+        img: "assets/real_cases/case_8.jpg",
+        badge: "Caso Real #04 · Od. Pablo González",
+        title: "Nueva Sonrisa Completa Fija",
+        diag: "Edentulismo parcial anterior con colapso labial e imposibilidad de masticar con seguridad.",
+        sol: "Prótesis dental fija sobre implantes, recuperando la plenitud facial y el soporte labial natural.",
+        time: "2 Meses",
+        comfort: "100% Confort",
+        cropRatio: 200,
+        topOffset: -100
+      },
+      {
+        img: "assets/real_cases/case_12.jpg",
+        badge: "Caso Real #05 · Od. Pablo González",
+        title: "Prueba y Ajuste Protésico de Precisión",
+        diag: "Múltiples preparaciones dentarias para puente fijo de alta estética.",
+        sol: "Ajuste pasivo milimétrico y cementación de estructura biocompatible monolítica.",
+        time: "3 Semanas",
+        comfort: "Ajuste Óptico",
+        cropRatio: 200,
+        topOffset: -100
+      },
+      {
+        img: "assets/caso1.jpg",
+        badge: "Caso Real #06 · Implanta Dental",
+        title: "Implante Dental Unitario & Corona Zirconio",
+        diag: "Pérdida traumática de pieza frontal con compromiso estético inmediato.",
+        sol: "Implante de titanio con corona estética de zirconio adaptada al color exacto de los dientes adyacentes.",
+        time: "3 Meses",
+        comfort: "Cero Dolor",
+        cropRatio: 200,
+        topOffset: -100
+      }
+    ];
+
+    function updateSlider(clientX) {
+      if (!container) return;
+      const rect = container.getBoundingClientRect();
+      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const pct = (x / rect.width) * 100;
+      beforeWrapper.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+      handle.style.left = pct + '%';
+      pctLabel.innerText = Math.round(pct) + '% Comparación';
+    }
+
+    window.selectClinicalCase = function(idx) {
+      const c = CLINICAL_CASES[idx];
+      if (!c) return;
+      caseBeforeImg.src = c.img;
+      caseAfterImg.src = c.img;
+      caseBeforeImg.style.height = c.cropRatio + '%';
+      caseAfterImg.style.height = c.cropRatio + '%';
+      caseAfterImg.style.top = c.topOffset + '%';
+
+      document.getElementById('case-badge').innerText = c.badge;
+      document.getElementById('case-title').innerText = c.title;
+      document.getElementById('case-diag').innerText = c.diag;
+      document.getElementById('case-sol').innerText = c.sol;
+      document.getElementById('case-time').innerText = c.time;
+      document.getElementById('case-comfort').innerText = c.comfort;
+
+      beforeWrapper.style.clipPath = 'inset(0 50% 0 0)';
+      handle.style.left = '50%';
+      pctLabel.innerText = '50% Comparación';
+
+      const btns = document.querySelectorAll('.case-tab-btn');
+      btns.forEach((btn, i) => {
+        if (i === idx) {
+          btn.className = "case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-brand-teal text-white shadow-md";
+        } else {
+          btn.className = "case-tab-btn shrink-0 whitespace-nowrap snap-start px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all bg-white text-brand-tealDeep border border-brand-borderLight hover:border-brand-teal";
+        }
+      });
+    };
+
+    if (container) {
+      container.addEventListener('mousedown', (e) => { isDown = true; updateSlider(e.clientX); });
+      window.addEventListener('mouseup', () => { isDown = false; });
+      window.addEventListener('mousemove', (e) => { if (isDown) updateSlider(e.clientX); });
+      container.addEventListener('touchstart', (e) => { updateSlider(e.touches[0].clientX); }, { passive: true });
+      container.addEventListener('touchmove', (e) => { updateSlider(e.touches[0].clientX); }, { passive: true });
+    }
+
+    // 3. QUIZ INTERACTIVO EN 30 SEGUNDOS
+    const questions = [
+      {
+        title: "¿Qué te gustaría corregir en tu sonrisa?",
+        desc: "Seleccioná la opción más cercana a tu situación actual.",
+        options: [
+          { label: "Dientes perdidos / Implantes", icon: "🦷", val: "implantes" },
+          { label: "Dientes apiñados o montados", icon: "📐", val: "apinados" },
+          { label: "Espacios / Dientes separados", icon: "✨", val: "separados" },
+          { label: "Dientes manchados o desgastados", icon: "💎", val: "estetica" }
+        ]
+      },
+      {
+        title: "¿Cuándo te gustaría comenzar?",
+        desc: "Tenemos turnos para evaluación y diagnóstico esta misma semana.",
+        options: [
+          { label: "Cuanto antes (esta semana)", icon: "⚡", val: "inmediato" },
+          { label: "En los próximos 30 días", icon: "📅", val: "este_mes" },
+          { label: "Quiero una evaluación diagnóstica", icon: "💡", val: "evaluacion" }
+        ]
+      },
+      {
+        title: "¿Te interesan facilidades de pago?",
+        desc: "En Implanta Dental disponemos de financiación bancaria y cuotas.",
+        options: [
+          { label: "Sí, me interesa pagar en cuotas", icon: "💳", val: "cuotas" },
+          { label: "Particular contado / débito", icon: "💵", val: "contado" },
+          { label: "Quiero conocer las opciones en la consulta", icon: "🤝", val: "consultar" }
+        ]
+      }
+    ];
+
+    let currentQ = 0;
+    let userAnswers = {};
+
+    function renderQuestion() {
+      const q = questions[currentQ];
+      document.getElementById('quiz-title').innerText = q.title;
+      document.getElementById('quiz-desc').innerText = q.desc;
+      document.getElementById('quiz-step-indicator').innerText = `Paso ${currentQ + 1} de ${questions.length}`;
+
+      const optionsDiv = document.getElementById('quiz-options');
+      optionsDiv.innerHTML = '';
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = "flex items-center gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-2xl bg-brand-bgLight border border-brand-borderLight text-left hover:border-brand-teal hover:bg-white active:scale-[0.99] hover:shadow-md transition-all";
+        btn.innerHTML = `
+          <span class="text-xl sm:text-2xl p-2 rounded-xl bg-white shadow-sm shrink-0">${opt.icon}</span>
+          <span class="font-bold text-sm text-brand-tealDeep flex-1">${opt.label}</span>
+          <span class="text-brand-teal font-bold text-sm">→</span>
+        `;
+        btn.onclick = () => selectQuizOption(opt.val, opt.label);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function selectQuizOption(val, label) {
+      userAnswers[currentQ] = label;
+      if (currentQ < questions.length - 1) {
+        currentQ++;
+        renderQuestion();
+      } else {
+        document.getElementById('quiz-screen').classList.add('hidden');
+        document.getElementById('quiz-result').classList.remove('hidden');
+        
+        try {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#00828A', '#10B981', '#14B8A6', '#053E42']
+          });
+        } catch(e) {}
+
+        const msg = encodeURIComponent(`Hola Implanta Dental! Completé el test en la web: busco mejorar ${userAnswers[0]} en la sede San Fernando y quisiera coordinar mi evaluación.`);
+        document.getElementById('quiz-whatsapp-link').href = `https://wa.me/message/G7VJEZJJYPJSC1?text=${msg}`;
+      }
+    }
+
+    renderQuestion();
+
+    // 4. ENGINE CILÍNDRICO 3D (TILTED GRID HERO)
+    (function initTiltedGridHero() {
+      const root = document.getElementById('tilted-grid-hero-root');
+      if (!root) return;
+
+            const IMAGES = [
+        { src: "assets/real_cases/case_2.jpg", alt: "Porcelana Pura · Od. Pablo González" },
+        { src: "assets/real_cases/case_7.jpg", alt: "Implante Titanio · Od. Pablo González" },
+        { src: "assets/real_cases/case_10.jpg", alt: "Rehabilitación Integral · Od. Pablo González" },
+        { src: "assets/real_cases/case_8.jpg", alt: "Sonrisa Completa · Od. Pablo González" },
+        { src: "assets/real_cases/case_11.jpg", alt: "Laboratorio Digital Zirconio" },
+        { src: "assets/real_cases/case_12.jpg", alt: "Ajuste Protésico · Od. Pablo González" },
+        { src: "assets/real_cases/case_9.jpg", alt: "Dr. Pablo González en Quirófano" },
+        { src: "assets/real_cases/case_5.jpg", alt: "Paciente Implanta Dental" },
+        { src: "assets/real_cases/case_1.jpg", alt: "Consultorio San Fernando" },
+        { src: "assets/real_cases/case_4.jpg", alt: "Alineadores Invisibles" },
+        { src: "assets/consultorio.jpg", alt: "Consultorio Quirúrgico San Fernando" },
+        { src: "assets/dr_pablo_transparent.png", alt: "Dr. Pablo González · Director Clínico" }
+      ];
+
+      IMAGES.forEach(({ src }) => { const im = new Image(); im.src = src; });
+
+      const SLICES = 16;
+      const speed = 4;
+      const aspectRatio = 16 / 9;
+      const gap = 6;
+
+      function getResponsiveParams(width) {
+        const isMobile = width < 640;
+        return {
+          CAMERA: isMobile ? 1.38 : 1.6,
+          MAX_WIDTH: isMobile ? 84 : 55,
+          tileHeight: isMobile ? 35 : 32,
+          axis: isMobile ? 54 : 56,
+          curve: isMobile ? 72 : 80,
+          fade: isMobile ? 8 : 12
+        };
+      }
+
+      function arc(b, cam) {
+        return (cam - 1 + Math.cos(b)) / (2 * cam * Math.sin(b));
+      }
+
+      function measure(width, height) {
+        const { CAMERA, MAX_WIDTH, tileHeight, curve } = getResponsiveParams(width);
+        const bend = (Math.min(85, Math.max(5, curve)) * Math.PI) / 180;
+        const h = Math.min(
+          (tileHeight / 100) * height,
+          ((MAX_WIDTH / 100) * width) / aspectRatio
+        );
+        const radius = width * arc(bend, CAMERA);
+        if (!(h > 0) || !(radius > 0))
+          return { columns: 2, sweep: 0, unit: 0, limit: 0 };
+        const deg = (rad) => (rad * 180) / Math.PI;
+        const unit = deg(h / radius);
+        const pitch = (aspectRatio + gap / 100) * unit;
+        const limit = deg(bend) + (aspectRatio * unit) / 2;
+        const columns = Math.min(60, Math.max(2, Math.ceil((2 * limit) / pitch)));
+        const round = (n) => +n.toFixed(4);
+        const sweep = round((columns * pitch) / 2);
+        return {
+          columns,
+          sweep,
+          unit: round(unit),
+          limit: round(Math.min(sweep, limit))
+        };
+      }
+
+      const styleEl = document.createElement('style');
+      document.head.appendChild(styleEl);
+
+      const band = document.createElement('div');
+      band.setAttribute('aria-hidden', 'true');
+      band.className = 'pointer-events-none absolute inset-0 transition-opacity duration-500';
+      root.insertBefore(band, root.firstChild);
+
+      const orbit = 'tgh_orbit_implanta';
+      const tileCls = 'tgh_tile_implanta';
+
+      function buildBand(width, height) {
+        const w = width || 1200;
+        const h = height || 560;
+        const { CAMERA, MAX_WIDTH, tileHeight, axis, curve, fade } = getResponsiveParams(w);
+        const bend = (Math.min(85, Math.max(5, curve)) * Math.PI) / 180;
+        const { columns, sweep, unit, limit } = measure(w, h);
+
+        const u = (n) => `calc(${+n.toFixed(4)} * min(${tileHeight}cqh, ${+(MAX_WIDTH / aspectRatio).toFixed(4)}cqw))`;
+        const r = 100 * arc(bend, CAMERA);
+        const radius = `${+r.toFixed(3)}cqw`;
+        const turn = (d) => `translateZ(${radius}) rotateY(${+d.toFixed(4)}deg) translateZ(-${radius})`;
+
+        const hide = +(((sweep - limit) / (2 * sweep || 1)) * 100).toFixed(4);
+        styleEl.textContent =
+          `@keyframes ${orbit}{` +
+          `from{transform:${turn(-sweep)}}to{transform:${turn(sweep)}}` +
+          `0%,${hide}%,${100 - hide}%,100%{visibility:hidden}` +
+          `${hide + 0.001}%,${100 - hide - 0.001}%{visibility:visible}}` +
+          `@media(prefers-reduced-motion:reduce){.${tileCls}{animation-play-state:paused}}`;
+
+        const share = aspectRatio / SLICES;
+        const duration = columns * speed;
+        const mask = `linear-gradient(90deg,transparent,#000 ${fade}%,#000 ${100 - fade}%,transparent)`;
+
+        band.style.opacity = '1';
+        band.style.perspective = `${+(r * CAMERA).toFixed(3)}cqw`;
+        band.style.perspectiveOrigin = `50% ${axis}%`;
+        band.style.maskImage = mask;
+        band.style.webkitMaskImage = mask;
+
+        band.innerHTML = '';
+
+        for (let t = 0; t < columns; t++) {
+          const first = columns - 1 - t;
+          const imgObj = IMAGES[first % IMAGES.length];
+
+          const tileDiv = document.createElement('div');
+          tileDiv.className = `${tileCls} absolute`;
+          tileDiv.style.left = `calc(50% - ${u(aspectRatio / 2)})`;
+          tileDiv.style.top = `calc(${axis}% - ${u(0.5)})`;
+          tileDiv.style.width = u(aspectRatio);
+          tileDiv.style.height = u(1);
+          tileDiv.style.transformStyle = 'preserve-3d';
+          tileDiv.style.animation = `${orbit} ${duration}s linear ${-t * speed}s infinite`;
+
+          for (let k = 0; k < SLICES; k++) {
+            const strip = document.createElement('div');
+            strip.className = `absolute top-0 overflow-hidden bg-white ${k === 0 ? 'rounded-l-lg' : ''} ${k === SLICES - 1 ? 'rounded-r-lg' : ''}`;
+            strip.style.left = u((aspectRatio - share) / 2);
+            strip.style.width = k === SLICES - 1 ? u(share) : `calc(${u(share)} + 1px)`;
+            strip.style.height = u(1);
+            strip.style.transform = turn((aspectRatio / 2 - (k + 0.5) * share) * unit);
+
+            const imgEl = document.createElement('img');
+            imgEl.src = imgObj.src;
+            imgEl.alt = k === 0 ? (imgObj.alt || '') : '';
+            imgEl.draggable = false;
+            imgEl.className = 'absolute top-0 max-w-none object-cover';
+            imgEl.style.left = u(-k * share);
+            imgEl.style.width = u(aspectRatio);
+            imgEl.style.height = u(1);
+
+            strip.appendChild(imgEl);
+            tileDiv.appendChild(strip);
+          }
+
+          tileDiv.addEventListener('animationiteration', (e) => {
+            const lap = Math.round(e.elapsedTime / duration);
+            const nextIdx = (lap * columns + first) % IMAGES.length;
+            const nextImg = IMAGES[nextIdx];
+            tileDiv.querySelectorAll('img').forEach(im => { im.src = nextImg.src; });
+          });
+
+          band.appendChild(tileDiv);
+        }
+      }
+
+      const rect = root.getBoundingClientRect();
+      buildBand(rect.width, rect.height);
+
+      let lastCols = 0;
+      let lastMobile = rect.width < 640;
+      const ro = new ResizeObserver(([entry]) => {
+        const { width, height } = entry.contentRect;
+        const m = measure(width, height);
+        const isMob = width < 640;
+        if (m.columns !== lastCols || isMob !== lastMobile) {
+          lastCols = m.columns;
+          lastMobile = isMob;
+          buildBand(width, height);
+        }
+      });
+      ro.observe(root);
+    })();
+
+    // 5. ANIME NAVBAR CON MINI-DOCTOR
+    (function initAnimeNavbar() {
+      const navContainer = document.getElementById('anime-navbar-container');
+      const activePill = document.getElementById('anime-active-pill');
+      const mascot = document.getElementById('anime-doctor-mascot');
+      const docHead = document.getElementById('doc-head');
+      const links = document.querySelectorAll('.anime-nav-link');
+
+      if (!navContainer || !activePill || !mascot || !links.length) return;
+
+      let activeLink = links[0];
+
+      function moveDoctorTo(linkEl) {
+        const containerRect = navContainer.getBoundingClientRect();
+        const linkRect = linkEl.getBoundingClientRect();
+
+        const leftPos = linkRect.left - containerRect.left;
+        const width = linkRect.width;
+        const centerPos = leftPos + width / 2;
+
+        activePill.style.left = `${leftPos}px`;
+        activePill.style.width = `${width}px`;
+        mascot.style.left = `${centerPos}px`;
+
+        links.forEach(l => {
+          if (l === linkEl) {
+            l.classList.remove('text-white/80', 'hover:text-white');
+            l.classList.add('text-white');
+          } else {
+            l.classList.remove('text-white');
+            l.classList.add('text-white/80', 'hover:text-white');
+          }
+        });
+      }
+
+      setTimeout(() => moveDoctorTo(activeLink), 50);
+      window.addEventListener('resize', () => moveDoctorTo(activeLink));
+
+      links.forEach(link => {
+        link.addEventListener('click', () => {
+          activeLink = link;
+          moveDoctorTo(activeLink);
+        });
+
+        link.addEventListener('mouseenter', () => {
+          docHead.classList.remove('doc-head-idle');
+          docHead.classList.add('doc-head-excited', 'doc-excited');
+        });
+
+        link.addEventListener('mouseleave', () => {
+          docHead.classList.remove('doc-head-excited', 'doc-excited');
+          docHead.classList.add('doc-head-idle');
+        });
+      });
+    })();
+
+    // 6. SCROLL OBSERVER (MOVIMIENTO FLUIDO AL HACER SCROLL HACIA ABAJO)
+    (function initScrollAnimations() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      reveals.forEach(el => observer.observe(el));
+    })();
+  
+    // 5. ENGINE DE LÍNEA DINÁMICA DE SCROLL (TIMELINE CONECTORA DE PASOS)
+    (function initScrollTimeline() {
+      const container = document.getElementById('timeline-container');
+      const progressFill = document.getElementById('timeline-progress-fill');
+      const rows = document.querySelectorAll('.timeline-step-row');
+      if (!container || !progressFill || rows.length === 0) return;
+
+      function updateTimelineScroll() {
+        const rect = container.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        // Empieza a llenar la línea cuando el timeline entra al 70% de la pantalla
+        const startOffset = windowHeight * 0.70;
+        const totalDist = rect.height;
+        const currentDist = startOffset - rect.top;
+        
+        let progress = Math.max(0, Math.min(1, currentDist / (totalDist * 0.9)));
+        progressFill.style.height = (progress * 100) + '%';
+
+        // Coordenada Y actual de la punta de la línea en la pantalla
+        const fillTipY = rect.top + (progress * rect.height);
+
+        rows.forEach((row) => {
+          const node = row.querySelector('.timeline-step-node');
+          const card = row.querySelector('.timeline-step-card');
+          if (!node || !card) return;
+          
+          const nodeRect = node.getBoundingClientRect();
+          const nodeCenterY = nodeRect.top + nodeRect.height / 2;
+
+          if (fillTipY >= nodeCenterY - 15) {
+            // Activar paso iluminado
+            node.classList.add('bg-brand-teal', 'text-white', 'border-brand-mint', 'shadow-glow-teal', 'scale-110', 'ring-4', 'ring-brand-teal/25');
+            node.classList.remove('bg-white', 'border-slate-300', 'text-brand-tealDeep');
+            card.classList.add('border-brand-teal/50', 'bg-white', 'shadow-xl');
+            card.classList.remove('bg-brand-bgLight');
+          } else {
+            // Estado neutro
+            node.classList.remove('bg-brand-teal', 'text-white', 'border-brand-mint', 'shadow-glow-teal', 'scale-110', 'ring-4', 'ring-brand-teal/25');
+            node.classList.add('bg-white', 'border-slate-300', 'text-brand-tealDeep');
+            card.classList.remove('border-brand-teal/50', 'bg-white', 'shadow-xl');
+            card.classList.add('bg-brand-bgLight');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateTimelineScroll, { passive: true });
+      window.addEventListener('resize', updateTimelineScroll, { passive: true });
+      // Ejecución inicial
+      setTimeout(updateTimelineScroll, 200);
+    })();
+
+  
+    // 7. FUNCIÓN ACORDEÓN INTERACTIVO FAQ
+    window.toggleFaq = function(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('[data-lucide="chevron-down"]');
+      const isHidden = content.classList.contains('hidden');
+
+      // Cerrar otros acordeones si se desea comportamiento único
+      document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('#faq [data-lucide="chevron-down"]').forEach(i => i.style.transform = 'rotate(0deg)');
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+      }
+    };
+
+    lucide.createIcons();
+
+  </script>
+</body>
+</html>
